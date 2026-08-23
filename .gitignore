@@ -1,0 +1,7 @@
+*.log
+*.exe
+
+project/D2Sync/bin/
+project/D2Sync/obj/
+project/D2Sync/publish/
+project/D2Sync/Releases/
