@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="D2Sync.Views.HowItWorksWindow"
+        Width="440" SizeToContent="Height" MaxHeight="480"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="BorderOnly"
+        Background="#1A1F38"
+        Title="Cómo funciona">
+    <Grid RowDefinitions="Auto,*">
+        <Border Grid.Row="0" BorderBrush="#12FFFFFF" BorderThickness="0,0,0,1" Padding="20,16,12,14">
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Grid.Column="0" x:Name="HeaderText" FontSize="15" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Content="✕" Click="CloseClick" Background="Transparent" Foreground="White" BorderThickness="0" Padding="8,4" />
+            </Grid>
+        </Border>
+        <ScrollViewer Grid.Row="1" MaxHeight="380">
+            <StackPanel x:Name="StepsPanel" Margin="20,16,20,20" Spacing="12" />
+        </ScrollViewer>
+    </Grid>
+</Window>

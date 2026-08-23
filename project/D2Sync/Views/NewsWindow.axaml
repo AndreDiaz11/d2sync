@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="D2Sync.Views.NewsWindow"
+        Width="380" Height="320"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="BorderOnly"
+        Background="#1A1F38"
+        Title="Novedades">
+    <Grid RowDefinitions="Auto,*,Auto" Margin="24">
+        <TextBlock x:Name="TitleText" Grid.Row="0" Text="Novedades" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,10" />
+        <ScrollViewer Grid.Row="1">
+            <TextBlock x:Name="NotesText" FontSize="13" Foreground="#B0C4E8" TextWrapping="Wrap" />
+        </ScrollViewer>
+        <Button Grid.Row="2" x:Name="OkButton" Content="Entendido" HorizontalAlignment="Right" Margin="0,14,0,0"
+                Click="CloseClick" Background="#1890D8" Foreground="White" CornerRadius="8" Padding="16,9" BorderThickness="0" FontWeight="Bold" />
+    </Grid>
+</Window>

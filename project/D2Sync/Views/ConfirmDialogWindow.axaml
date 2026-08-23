@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="D2Sync.Views.ConfirmDialogWindow"
+        Width="420" CanResize="False" SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="BorderOnly"
+        Background="#1A1F38"
+        Title="Confirmar">
+    <StackPanel Margin="28" Spacing="14">
+        <StackPanel Orientation="Horizontal" Spacing="12">
+            <Border x:Name="IconBadge" Width="36" Height="36" CornerRadius="10">
+                <TextBlock x:Name="IconText" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>
+            <TextBlock x:Name="TitleText" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="330" />
+        </StackPanel>
+        <TextBlock x:Name="MessageText" FontSize="13" Foreground="#B0C4E8" TextWrapping="Wrap" LineHeight="19" />
+        <Grid ColumnDefinitions="*,10,*" Margin="0,10,0,0">
+            <Button Grid.Column="0" x:Name="CancelButton" Content="Cancelar" Click="CancelClick"
+                    Background="#2E3A58" Foreground="White" CornerRadius="10" Padding="0,11" HorizontalContentAlignment="Center" BorderThickness="0" />
+            <Button Grid.Column="2" x:Name="ConfirmButton" Content="Confirmar" Click="ConfirmClick"
+                    Foreground="White" CornerRadius="10" Padding="0,11" HorizontalContentAlignment="Center" BorderThickness="0" FontWeight="Bold" />
+        </Grid>
+    </StackPanel>
+</Window>

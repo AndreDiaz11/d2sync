@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:D2Sync.ViewModels"
+             x:Class="D2Sync.Views.CloudSectionView"
+             x:DataType="vm:CloudSectionViewModel">
+    <ScrollViewer>
+        <StackPanel Spacing="14">
+            <StackPanel Spacing="5">
+                <TextBlock Text="{Binding SteamAccountLabel}" FontSize="12.5" Foreground="#99FFFFFF" Margin="4,0,0,0" />
+                <Button Command="{Binding PickCommand}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left"
+                        Background="#1A1F38" BorderBrush="#1AFFFFFF" BorderThickness="1" CornerRadius="14" Padding="18,16">
+                    <StackPanel Orientation="Horizontal" Spacing="14">
+                        <TextBlock Text="●" FontSize="12" Foreground="#5AE4FF" />
+                        <TextBlock Text="{Binding Seleccion.NombreVisible, FallbackValue='— Sin elección —'}" FontSize="13.5" Foreground="White" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <Border IsVisible="{Binding Seleccion, Converter={x:Static ObjectConverters.IsNotNull}}" Background="#1F1A1F38" CornerRadius="14" Padding="16">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="{Binding StatusIcon}" FontSize="18" Foreground="{Binding StatusColor}" />
+                    <StackPanel Spacing="2">
+                        <TextBlock Text="{Binding StatusTitle}" FontSize="13.5" FontWeight="Bold" Foreground="White" />
+                        <TextBlock Text="{Binding StatusSub}" FontSize="12" Foreground="#B0C4E8" TextWrapping="Wrap" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnDefinitions="*,14,*">
+                <Button Grid.Column="0" Classes="grad-btn" Content="{Binding CheckLabel}" Command="{Binding CheckCommand}" IsEnabled="{Binding Seleccion, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                <Button Grid.Column="2" Classes="grad-btn" IsVisible="{Binding CloudActivo}" Content="{Binding DisableLabel}" Command="{Binding DisableCommand}" />
+                <Button Grid.Column="2" Classes="grad-btn" IsVisible="{Binding !CloudActivo}" Content="{Binding EnableLabel}" Command="{Binding EnableCommand}" IsEnabled="{Binding Verificado}" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:D2Sync.ViewModels"
+             x:Class="D2Sync.Views.SectionHeaderView"
+             x:DataType="vm:SectionViewModelBase">
+    <StackPanel>
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" Margin="32,18,32,6">
+            <Button Grid.Column="0" Classes="pill-ghost" Command="{Binding Shell.BackCommand}">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBlock Text="←" FontSize="13" />
+                    <TextBlock Text="{Binding Shell.BackLabel}" />
+                </StackPanel>
+            </Button>
+            <TextBlock Grid.Column="2" Text="D2Sync" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <TextBlock Grid.Column="3" Text="by Nexo" FontSize="11.5" Foreground="#B0C4E8" Opacity="0.8" VerticalAlignment="Center" Margin="0,0,12,0" />
+        </Grid>
+
+        <Grid ColumnDefinitions="*,Auto" Margin="44,10,44,0">
+            <StackPanel Grid.Column="0">
+                <StackPanel Orientation="Horizontal" Spacing="10">
+                    <TextBlock Text="{Binding IconGlyph}" FontSize="18" Foreground="#5AE4FF" />
+                    <TextBlock Text="{Binding Title}" FontSize="20" FontWeight="Bold" Foreground="White" />
+                </StackPanel>
+                <TextBlock Text="{Binding Summary}" FontSize="12" Foreground="#B0C4E8" TextWrapping="Wrap" Margin="0,4,0,0" LineHeight="17" />
+            </StackPanel>
+            <Button Grid.Column="1" Click="HowItWorksClick" Background="#251890D8" BorderBrush="#4D5AE4FF" BorderThickness="1"
+                    CornerRadius="50" Padding="12,8" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <TextBlock Text="ⓘ" FontSize="13" Foreground="#5AE4FF" />
+                    <TextBlock Text="{Binding Shell.HowItWorksLabel}" FontSize="12" FontWeight="Bold" Foreground="#5AE4FF" />
+                </StackPanel>
+            </Button>
+        </Grid>
+    </StackPanel>
+</UserControl>

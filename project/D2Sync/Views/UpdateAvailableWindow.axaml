@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="D2Sync.Views.UpdateAvailableWindow"
+        Width="360" Height="200" CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        SystemDecorations="BorderOnly"
+        Background="#1A1F38"
+        Title="Actualización disponible">
+    <Grid RowDefinitions="*,Auto" Margin="24">
+        <StackPanel VerticalAlignment="Center" Spacing="8">
+            <TextBlock Text="🔄 Nueva versión disponible" FontSize="16" FontWeight="Bold" Foreground="White" />
+            <TextBlock x:Name="VersionText" Text="Versión x.y.z lista para instalar." FontSize="13" Foreground="#B0C4E8" TextWrapping="Wrap" />
+            <TextBlock x:Name="ErrorText" FontSize="12" Foreground="#FF6B6B" TextWrapping="Wrap" IsVisible="False" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10">
+            <Button x:Name="LaterButton" Content="Ahora no" Click="LaterClick" Background="#2E3A58" Foreground="White" CornerRadius="8" Padding="14,9" BorderThickness="0" />
+            <Button x:Name="UpdateButton" Content="Actualizar" Click="UpdateClick" Background="#1890D8" Foreground="White" CornerRadius="8" Padding="14,9" BorderThickness="0" FontWeight="Bold" />
+        </StackPanel>
+    </Grid>
+</Window>

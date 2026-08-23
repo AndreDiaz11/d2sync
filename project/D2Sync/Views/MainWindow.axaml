@@ -1,0 +1,117 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:D2Sync.ViewModels"
+        xmlns:views="using:D2Sync.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="980" d:DesignHeight="700"
+        x:Class="D2Sync.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/icon.ico"
+        Width="980" Height="700" MinWidth="820" MinHeight="600"
+        Background="#384E8A"
+        SystemDecorations="None"
+        Title="D2Sync">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                <GradientStop Color="#5878B8" Offset="0" />
+                <GradientStop Color="#384E8A" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid RowDefinitions="36,*">
+            <Border Grid.Row="0" Background="#2E000000" BorderBrush="#0FFFFFFF" BorderThickness="0,0,0,1"
+                    PointerPressed="Titlebar_PointerPressed">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="4" Margin="0,0,10,0">
+                    <Button Content="─" Click="Minimize_Click" Classes="titlebar-btn" />
+                    <Button Content="✕" Click="Close_Click" Classes="titlebar-btn close" />
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <!-- Home -->
+                <Grid IsVisible="{Binding IsHome}" RowDefinitions="Auto,Auto,*,Auto">
+                    <Grid Grid.Row="0" Margin="24,24,24,0">
+                        <StackPanel HorizontalAlignment="Center" Spacing="10">
+                            <TextBlock Text="D2Sync" FontSize="32" FontWeight="Black" Foreground="White" HorizontalAlignment="Center" />
+                            <Border Background="#33000000" CornerRadius="50" Padding="14,5" HorizontalAlignment="Center">
+                                <TextBlock Text="by Nexo" FontSize="13" FontWeight="SemiBold" Foreground="#B0C4E8" />
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="4">
+                            <Button Content="ES" Command="{Binding SetLanguageCommand}" CommandParameter="es"
+                                    Background="{Binding !IsEnglish, Converter={x:Static views:BoolToLangBrushConverter.Instance}}"
+                                    Foreground="White" CornerRadius="8,0,0,8" Padding="10,7" BorderThickness="0" FontWeight="Bold" FontSize="11" />
+                            <Button Content="EN" Command="{Binding SetLanguageCommand}" CommandParameter="en"
+                                    Background="{Binding IsEnglish, Converter={x:Static views:BoolToLangBrushConverter.Instance}}"
+                                    Foreground="White" CornerRadius="0,8,8,0" Padding="10,7" BorderThickness="0" FontWeight="Bold" FontSize="11" />
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="48,20,48,20">
+                        <Border Background="#24000000" CornerRadius="24" BorderBrush="#14FFFFFF" BorderThickness="1" Padding="18">
+                            <ItemsControl ItemsSource="{Binding HomeSections}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:HomeSectionEntry">
+                                        <Button Width="180" Height="150" Margin="7" Command="{Binding OpenCommand}" CommandParameter="{Binding Section}"
+                                                Background="#A61A1F38" BorderBrush="#1AFFFFFF" BorderThickness="1" CornerRadius="18">
+                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Spacing="12">
+                                                <TextBlock Text="{Binding IconGlyph}" FontSize="40" Foreground="#B3FFFFFF" HorizontalAlignment="Center" />
+                                                <TextBlock Text="{Binding Titulo}" FontSize="12.5" FontWeight="SemiBold" Foreground="#B3FFFFFF" HorizontalAlignment="Center" />
+                                            </StackPanel>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                    </Grid>
+
+                    <views:BottomBarView Grid.Row="3" />
+                </Grid>
+
+                <!-- Sección -->
+                <Grid IsVisible="{Binding !IsHome}" RowDefinitions="Auto,Auto,*,Auto">
+                    <views:SectionHeaderView Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding CurrentSection}" />
+                    <Grid Grid.Row="2" Margin="44,14,44,18">
+                        <Border Background="#24000000" CornerRadius="20" BorderBrush="#14FFFFFF" BorderThickness="1" Padding="16">
+                            <ContentControl Content="{Binding CurrentSection}" />
+                        </Border>
+                    </Grid>
+                    <views:BottomBarView Grid.Row="3" />
+                </Grid>
+
+                <!-- Loading popup -->
+                <Border IsVisible="{Binding IsLoadingPopupVisible}" Background="#88000000">
+                    <Border Background="#1A1F38" CornerRadius="18" Padding="32,26" BorderBrush="#1AFFFFFF" BorderThickness="1"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Center" Spacing="16">
+                            <ProgressBar IsIndeterminate="True" Width="30" Height="30" />
+                            <TextBlock Text="{Binding ApplyingChangesLabel}" FontSize="13" FontWeight="SemiBold" Foreground="White" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </Border>
+
+                <!-- Error popup -->
+                <Border IsVisible="{Binding ErrorPopupVisible}" Background="#88000000">
+                    <Border Background="#1A1F38" CornerRadius="16" Padding="24" BorderBrush="#1AFFFFFF" BorderThickness="1"
+                            Width="380" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Spacing="14">
+                            <TextBlock Text="{Binding CouldNotCompleteLabel}" FontSize="15" FontWeight="Bold" Foreground="White" />
+                            <TextBlock Text="{Binding ErrorMessage}" FontSize="12.5" Foreground="#B0C4E8" TextWrapping="Wrap" />
+                            <Button Content="OK" Command="{Binding DismissErrorCommand}" HorizontalAlignment="Right"
+                                    Background="#1890D8" Foreground="White" CornerRadius="8" Padding="16,8" BorderThickness="0" FontWeight="Bold" />
+                        </StackPanel>
+                    </Border>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Window>
