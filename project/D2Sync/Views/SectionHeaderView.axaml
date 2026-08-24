@@ -4,15 +4,14 @@
              x:Class="D2Sync.Views.SectionHeaderView"
              x:DataType="vm:SectionViewModelBase">
     <StackPanel>
-        <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" Margin="32,18,32,6">
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto" Margin="32,18,32,6">
             <Button Grid.Column="0" Classes="pill-ghost" Command="{Binding Shell.BackCommand}">
                 <StackPanel Orientation="Horizontal" Spacing="8">
                     <TextBlock Text="←" FontSize="13" />
                     <TextBlock Text="{Binding Shell.BackLabel}" />
                 </StackPanel>
             </Button>
-            <TextBlock Grid.Column="2" Text="D2Sync" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,8,0" />
-            <TextBlock Grid.Column="3" Text="by Nexo" FontSize="11.5" Foreground="#B0C4E8" Opacity="0.8" VerticalAlignment="Center" Margin="0,0,12,0" />
+            <TextBlock Grid.Column="2" Text="D2Sync" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="0,0,12,0" />
         </Grid>
 
         <Grid ColumnDefinitions="*,Auto" Margin="44,10,44,0">

@@ -30,7 +30,6 @@ public static class Strings
     public static string CloseWindowLabel => En ? "Close" : "Cerrar";
 
     public static string AppTitle => "D2Sync";
-    public static string ByNexo => "by Nexo";
 
     // ── Sync ──────────────────────────────────────────────
     public static string SyncSourceLabel => En ? "Source account — config to copy" : "Cuenta origen — config a copiar";

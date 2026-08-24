@@ -36,9 +36,6 @@
                     <Grid Grid.Row="0" Margin="24,24,24,0">
                         <StackPanel HorizontalAlignment="Center" Spacing="10">
                             <TextBlock Text="D2Sync" FontSize="32" FontWeight="Black" Foreground="White" HorizontalAlignment="Center" />
-                            <Border Background="#33000000" CornerRadius="50" Padding="14,5" HorizontalAlignment="Center">
-                                <TextBlock Text="by Nexo" FontSize="13" FontWeight="SemiBold" Foreground="#B0C4E8" />
-                            </Border>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Spacing="4">
                             <Button Content="ES" Command="{Binding SetLanguageCommand}" CommandParameter="es"
